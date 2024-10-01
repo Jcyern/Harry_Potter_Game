@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,16 @@ using UnityEngine.UI;
 public class Analizador_Lexico : MonoBehaviour
 {
     public string[] script;
-    private List<Token> tokens = new();
+    public List<Token> tokens ;
+
+    
+    public Analizador_Lexico( string[] lines_codes )
+    {  
+        script = lines_codes;
+        tokens = new List<Token>();
+
+      
+    }
 
     // Crear diccionario para el uso de los patrones
 
@@ -27,54 +37,50 @@ public class Analizador_Lexico : MonoBehaviour
             { "Effect", Token.TokenType.Effect_activacion },
             { "Number", Token.TokenType.Number },
             { "Variable", Token.TokenType.Variable },
-            { "Amount", Token.TokenType.Amount },
             { "Type", Token.TokenType.Type },
             { "Params", Token.TokenType.Params },
-            { "Range", Token.TokenType.Range },
             { "String", Token.TokenType.String },
             { "Action", Token.TokenType.Action },
             { "Name", Token.TokenType.Name },
-            { "Faction", Token.TokenType.Faction },
-            { "Power", Token.TokenType.Power },
             { "OnActivacion", Token.TokenType.OnActivacion },
             { "Selector", Token.TokenType.Selector },
             { "Source", Token.TokenType.Source },
             { "Single", Token.TokenType.Single },
             { "Predicate", Token.TokenType.Predicate },
             { "PostAction", Token.TokenType.PostAction },
-            { "targets", Token.TokenType.Targets },
-            { "context", Token.TokenType.Context },
-            { "TriggerPlayer", Token.TokenType.TriggerPlayer },
-            { "Board", Token.TokenType.Board },
-            { "HandOfPlayer", Token.TokenType.HandOfPlayer },
-            { "hand", Token.TokenType.hand },
-            { "FieldOfPlayer", Token.TokenType.FieldOfPlayer },
-            { "field", Token.TokenType.field },
-            { "GraveyardOfPlayer", Token.TokenType.GraveyardOfPlayer },
-            { "graveyard", Token.TokenType.graveyard },
-            { "DeckOfPlayer", Token.TokenType.DeckOfPlayer },
-            { "deck", Token.TokenType.Deck },
-            { "Owner", Token.TokenType.Owner },
-            { "Find", Token.TokenType.Find },
-            { "find", Token.TokenType.find },
-            { "Push", Token.TokenType.Push },
-            { "SendBottom", Token.TokenType.SendBottom },
-            { "Pop", Token.TokenType.Pop },
-            { "Remove", Token.TokenType.Remove },
-            { "Shuffle", Token.TokenType.Shuffle },
             // vamos hacer uso de la Lenguaje Regex , en este lenguaje alguno de los caracteres q se pasan pertenecen a ese lenguaje
             // por ende se usara esta estructura \\ + caracter problematico para q sepa que no nos estamos refiriendo al caracter del lenguaje
+             
+             //Facciones
+            {"Neutral", Token.TokenType.Facciones},
+            {"Gryffindor",Token.TokenType.Facciones},
+            {"Ravenclaw", Token.TokenType.Facciones},
+            {"Slytherin",Token.TokenType.Facciones},
+            {"Hufflepuff",Token.TokenType.Facciones},
+
+            //Personajes
+            {"Lider", Token.TokenType.Personaje},
+            {"Heroe",Token.TokenType.Personaje},
+            {"Criatura",Token.TokenType.Personaje},
+            {"Mago",Token.TokenType.Personaje},
+            {"Ser",Token.TokenType.Personaje},
+            {"Objeto",Token.TokenType.Personaje},
+            {"Hechizo",Token.TokenType.Personaje},
+            {"Pocion",Token.TokenType.Personaje},
+            {"Lugar",Token.TokenType.Personaje},
+
+
+
 
             //Simbologia
             { "=>", Token.TokenType.Flecha },
             { ">=", Token.TokenType.Relacional },
-            { "<=", Token.TokenType.Relacional},
+            { "<=", Token.TokenType.Relacional },
             { ">", Token.TokenType.Relacional },
             { "<", Token.TokenType.Relacional },
             { "==", Token.TokenType.Relacional },
             { "-=", Token.TokenType.Asignacion },
-            { "\\+=", Token.TokenType.Asignacion},
-            
+            { "\\+=", Token.TokenType.Asignacion },
             { Regex.Escape("++"), Token.TokenType.PlusPlus },
             { "=", Token.TokenType.Asignacion },
             { Regex.Escape("["), Token.TokenType.Left_Corchete },
@@ -101,64 +107,24 @@ public class Analizador_Lexico : MonoBehaviour
             { "while", Token.TokenType.While },
             { "for", Token.TokenType.For },
             //booleano
-            { "true", Token.TokenType.Booleano},
-            { "false", Token.TokenType.Booleano},
+            { "true", Token.TokenType.Booleano },
+            { "false", Token.TokenType.Booleano },
             //operadores logicos
             { "&&", Token.TokenType.And },
             { "\\|\\|", Token.TokenType.Or },
-         
-            {"^[A-Za-z]+$",Token.TokenType.Palabra},
+            { "^[A-Za-z]+$", Token.TokenType.Palabra },
             { "[a-zA-Z_]\\w*", Token.TokenType.Desconocido }, // se usas par encontrar todas las palabras q enpiece por mayuscula minuscala contenga numeros o guion bajo
             { "\\d+", Token.TokenType.Digitos } // \\+d en el lengujae regex se usas para encontrar hasta  al menos un digito o mas
         };
 
-    public void Convertirdor_de_array()
-    {
-        script = GameObject.Find("texto_codigo").GetComponent<TMP_InputField>().text.Split("\n");
-        Desglozador(script);
+  
+    
 
-        for (int i = 0; i < tokens.Count; i++)
-        {
-            Debug.Log(tokens[i].Value);
-            Debug.Log(tokens[i].Type);
-        }
-    }
-
-    //Metodos para localizar la poscion de la palabras
-
-    //linea se empieza aa contar desde 1
-    public int Linea(string codigo, int index)
-    {
-        int linea = 1;
-
-        for (int i = 0; i <= index; i++)
-        {
-            if (codigo[i] == '\n')
-            {
-                linea++;
-            }
-        }
-        return linea;
-    }
-
-    //columnas se empiezan a contar a partir de 0
-    public int Columnna(string codigo, int index)
-    {
-        int columna = 1;
-        for (int i = index; i >= 0; i--)
-        {
-            if (codigo[index] == '\n')
-            {
-                columna = index - i;
-                break;
-            }
-        }
-        return columna;
-    }
-
-    //  se desgloza todo el string en palabras reservadas
     public void Desglozador(string[] code_lines)
     {
+
+        
+      
         string input = string.Join('\n', code_lines);
         /// uniendo las lineas de codigo en una sola cadena
         string pattern = $"{string.Join('|', palabras_reservadas.Keys)}"; // une los llaves de plabras reservadas , separadas por un or para saber el patron a seguir para buscar matches
@@ -213,4 +179,38 @@ public class Analizador_Lexico : MonoBehaviour
             }
         }
     }
+
+    //Metodos para localizar la poscion de la palabras
+
+    //linea se empieza aa contar desde 1
+    public int Linea(string codigo, int index)
+    {
+        int linea = 1;
+
+        for (int i = 0; i <= index; i++)
+        {
+            if (codigo[i] == '\n')
+            {
+                linea++;
+            }
+        }
+        return linea;
+    }
+
+    //columnas se empiezan a contar a partir de 0
+    public int Columnna(string codigo, int index)
+    {
+        int columna = 1;
+        for (int i = index; i >= 0; i--)
+        {
+            if (codigo[index] == '\n')
+            {
+                columna = index - i;
+                break;
+            }
+        }
+        return columna;
+    }
+
+    //  se desgloza todo el string en palabras reservadas
 }

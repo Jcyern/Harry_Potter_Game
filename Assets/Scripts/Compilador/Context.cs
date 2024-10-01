@@ -50,7 +50,7 @@ public class Context
 
         if ( current_context.GetType() != value.GetType()) // verifica si el valor que se pasa no  es del mismo tipo que el existia 
         {
-            throw new Exception ( $"El valor que se le quiere es del tipo {value.GetType()}y esta variable solo acepta {current_context.GetType()}  ");
+            throw new Exception ( $"El valor que se le quiere dar  es del tipo { value.GetType()} y esta variable solo acepta {current_context.GetType()}  ");
         }
          Variables[name ]= value;
     }

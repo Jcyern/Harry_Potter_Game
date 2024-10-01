@@ -9,11 +9,15 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    public string Lider;
+   
+   public  Game_contex contexto_game;
+      public string Lider;
     public int casa_player;
     public GameObject Seleccion_de_fac;
     public GameObject Menu_de_construir_mazo;
     public GameObject Seleccion_lideres;
+
+    public GameObject SceneCodificar;
 
      public GameObject Tablero;
    public   Carta carta_ ; //contiene solo el script carta 
@@ -92,6 +96,8 @@ public class Manager : MonoBehaviour
         Asociar_card();
     }
 
+
+
     public void Asociar_card()
     {
         for (int i = 0; i < 10; i++)
@@ -99,32 +105,16 @@ public class Manager : MonoBehaviour
             if (i + (pagina * 10) < cartas.Count)
             { //
                 array[i].SetActive(true);
-                array[i].GetComponent<Carta>().id = cartas[i + (pagina * 10)].id;
-                array[i].GetComponent<Carta>().Nombre = cartas[i + (pagina * 10)].Nombre;
-                array[i].GetComponent<Carta>().Tipo = cartas[i + (pagina * 10)].Tipo;
-                array[i].GetComponent<Carta>().Faction = cartas[i + (pagina * 10)].Faction;
-                array[i].GetComponent<Carta>().Efecto = cartas[i + pagina * 10].Efecto;
+                array[i].GetComponent<CardDisplay>().CartaLoad(cartas[i + (pagina * 10)]);
                
-               array[i].GetComponent<Carta>().Load_interface();
-               Debug.Log( cartas[i+ ( pagina * 10 )].Nombre.Replace(' ', '_'));
-               
+                array[i].GetComponent<CardDisplay>().Load_interface();
+                  array[i].GetComponent<CardDisplay>().CartaDebug();
+                
+              
+           //    Debug.Log( cartas[i+ ( pagina * 10 )].Nombre.Replace(' ', '_'));
                
                
-                // GameObject.Find("name_" + (i + 1)).GetComponent<TextMeshProUGUI>().text = cartas[
-                //     i + (pagina * 10)
-                // ].Nombre;
-                // GameObject.Find("effect_" + (i + 1)).GetComponent<TextMeshProUGUI>().text = cartas[
-                //     i + (pagina * 10)
-                // ].Efecto;
-                // GameObject.Find("img_" + (i + 1)).GetComponent<Image>().sprite =
-                //     Resources.Load<Sprite>(
-                //         "img/Diseno_de_cartas/cartas/" + cartas[i + (pagina * 10)].Faction + ""
-                //     );
-                // string sprite = "img/Diseno_de_cartas/lideres/" + cartas[i + (pagina * 10)].Nombre.Replace(' ', '_');
-                // GameObject.Find("back_" + (i + 1)).GetComponent<Image>().sprite =
-                //     Resources.Load<Sprite>(sprite);
-                // Debug.Log(sprite);
-
+         
 
             }
             else
@@ -139,6 +129,7 @@ public class Manager : MonoBehaviour
     public void Next_Pag()
     {
         pagina += 1;
+       
 
         Asociar_card();
         if (((pagina + 1) * 10) > cartas.Count)
@@ -167,25 +158,40 @@ public class Manager : MonoBehaviour
 
     public void Scene_Tablero()
     {
-        if (Menu_de_construir_mazo.GetComponent<Mazo>().mazo.Count == 25)
+        if (GameObject.Find("Canvas").GetComponent<Mazo>().mazo.Count == 25)
         {
             
-            int count= Menu_de_construir_mazo.GetComponent<Mazo>().mazo.Count;
             Tablero.SetActive(true);
 
             Tablero.GetComponent<Asociacion_imagen>().Asociar();
 
+            //asocindo el mazo contrario creado completamente a la azar
             GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().Asociar_el_mazo();
-            
+          
+          
+             Debug.Log("Cartas traspasadas");
+            foreach ( var card in  GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().mazo_oponente)
+            {
+
+                
+                card.CartaDebug();
+            }
+
             //Debug.Log();
-            for (int i = 0; i < count; i++)
+
+            //cambiando , las cartas guardadas en el canvas , las traslado al mazo , del tablero 
+            for (int i = 0; i < GameObject.Find("Canvas").GetComponent<Mazo>().mazo.Count; i++)
             { 
-               GameObject.Find("mazo").GetComponent<Mazo>().mazo.Add(Menu_de_construir_mazo.GetComponent<Mazo>().mazo[i]);
+               GameObject.Find("mazo").GetComponent<Mazo>().mazo.Add(GameObject.Find("Canvas").GetComponent<Mazo>().mazo[i]);
             }
 
             Menu_de_construir_mazo.SetActive(false);
+
+             GameObject.Find("mazo").GetComponent<Mazo>().Barajear_cartas();
         }
-         GameObject.Find("mazo").GetComponent<Mazo>().Barajear_cartas();
+
+        
+        
 
     
     }

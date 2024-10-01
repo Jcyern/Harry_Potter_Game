@@ -7,7 +7,7 @@ using UnityEngine;
 public class Cambio_Turno : MonoBehaviour
 {  //true -- Jugador 1 
    //false -- Jugador 2 (cpu)
-    public bool turno = true ;
+    public bool turno = true   ;
     public int ronda =1;
      List<GameObject> mano ;
      List<GameObject> mano_provicional;
@@ -23,7 +23,7 @@ public class Cambio_Turno : MonoBehaviour
       
          GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().Robo_Aut(10);
       
-         GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().Anadir_Script_carta_unidad(GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().mano_interfaz_2);
+       
          
          GameObject.Find("mazo_contrario").GetComponent<Mazo_oponente>().Jugar_carta();
         
@@ -41,7 +41,10 @@ public class Cambio_Turno : MonoBehaviour
         GameObject.Find("mazo").GetComponent<Mazo>().robos--;
 
       }
-     
+     else 
+     {
+      throw new System.Exception ( " no se reconoce el turno ");
+     }
   
       
     }

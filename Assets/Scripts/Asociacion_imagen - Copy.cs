@@ -26,3 +26,5 @@ public class Asociacion_imagen : MonoBehaviour
         imagen_2.sprite = spriteLiderEnemigo;
     }
 }
+
+

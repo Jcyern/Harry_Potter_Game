@@ -9,7 +9,7 @@ public class Jugador_2 : MonoBehaviour
     int random_number;
    public  string rnd_Lider;
     string rnd_casa;
-    public List<Carta> mazo;
+    public List<CardDisplay> mazo ;
   
     public void Escogiendo_casa_and_lider()
     {
@@ -56,7 +56,7 @@ public class Jugador_2 : MonoBehaviour
                 {
                     for (int j = 0; j < mazo.Count; j++)
                     {
-                        if (mazo[j].Nombre == total_cartas[random].Nombre)
+                        if (mazo[j].Name == total_cartas[random].Nombre)
                         {
                             pos++;
                             carta_seleccionada = true;
@@ -72,9 +72,9 @@ public class Jugador_2 : MonoBehaviour
                      tipo_hechizo_pociones++;
                    }
                     
-                   if(tipo_hechizo_pociones<=12)
+                   if(tipo_hechizo_pociones<=10)
                    {
-                     mazo.Add(total_cartas[random]);
+                     mazo.Add(new CardDisplay(total_cartas[random]));
                    }
                  }
                
@@ -83,16 +83,18 @@ public class Jugador_2 : MonoBehaviour
                     tipo_heroes++;
                   
                    
-                   mazo .Add(total_cartas[random]);
+                   mazo .Add(new CardDisplay(total_cartas[random]));
                 }
             }
 
             if(mazo.Count==25)
             break;
         }
+        Debug.Log("escribinedo cartas del Jugador 2 ");
         for (int i = 0; i < mazo.Count; i++)
         {
-            Debug.Log("Carta #" + i + "" + mazo[i].Nombre);
+            
+            Debug.Log($"Carta #{i} +  + {mazo[i].Name}  Tipo {mazo[i].Tipo}  Faction {mazo[i].Faction}");
             
         }
     }

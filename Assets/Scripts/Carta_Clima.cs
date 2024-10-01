@@ -7,8 +7,8 @@ public class Carta_Clima : Carta_Especial
     public int fila;
     public int penalizacion;
 
-    public Carta_Clima(int id, string nombre, string efecto, string tipo, string faction, bool disponibilidad)
-        : base(id, nombre, efecto, tipo, faction, disponibilidad)
+    public Carta_Clima(int id, string nombre, string efecto, string tipo, string faction, bool disponibilidad, bool IsCard)
+        : base(id, nombre, efecto, tipo, faction, disponibilidad, IsCard)
     {
         this.id = id;
         this.Nombre = nombre;
@@ -16,5 +16,6 @@ public class Carta_Clima : Carta_Especial
         this.Tipo = tipo;
         this.Faction = faction;
         this.disponibilidad = disponibilidad;
+        this.IsCard = IsCard;
     }
 }

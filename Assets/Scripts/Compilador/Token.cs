@@ -70,7 +70,7 @@ public class Token : MonoBehaviour
      Or,  // ||
      And,  // &&
      
-
+     
   
 
      //Bucles 
@@ -131,7 +131,14 @@ public class Token : MonoBehaviour
 
    Palabra,
    Desconocido,
-   Digitos
+   Digitos,
+
+   Personaje,
+
+   Nulo,
+
+   //facciones
+   Facciones
 
    }
 

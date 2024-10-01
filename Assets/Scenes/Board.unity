@@ -10524,7 +10524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.783508, y: -328.66}
+  m_AnchoredPosition: {x: 9.783508, y: -328.66003}
   m_SizeDelta: {x: -537.47, y: -657.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446340752
@@ -13315,7 +13315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &568974648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17494,6 +17494,152 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &728606212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728606213}
+  - component: {fileID: 728606217}
+  - component: {fileID: 728606216}
+  - component: {fileID: 728606215}
+  - component: {fileID: 728606214}
+  m_Layer: 5
+  m_Name: Code
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &728606213
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728606212}
+  m_LocalRotation: {x: -0.00022561336, y: -0.00022734962, z: -0.70439357, w: 0.7098096}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021997234}
+  m_LocalEulerAnglesHint: {x: -0.037, y: 0, z: -89.561}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -451.4, y: -167.9}
+  m_SizeDelta: {x: 82.5, y: 37.07}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &728606214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728606212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a5a687197f4e40e9bb7f2dbdb59a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerPlayer: 1
+--- !u!114 &728606215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728606212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 728606216}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 728606214}
+        m_TargetAssemblyTypeName: Game_Context, Assembly-CSharp
+        m_MethodName: Actualizar_Context
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &728606216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728606212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.4925238, b: 0.5999894, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1870536034, guid: bbca143d13d640a8b86ac071caa04a82, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &728606217
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728606212}
+  m_CullTransparentMesh: 1
 --- !u!1 &729232881
 GameObject:
   m_ObjectHideFlags: 0
@@ -18032,7 +18178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.78302, y: -233.33005}
+  m_AnchoredPosition: {x: 9.78302, y: -233.33008}
   m_SizeDelta: {x: -537.47, y: -657.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &745642582
@@ -25912,6 +26058,7 @@ RectTransform:
   - {fileID: 723306925}
   - {fileID: 1048059708}
   - {fileID: 1102576144}
+  - {fileID: 728606213}
   - {fileID: 1096723558}
   m_Father: {fileID: 1977643805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31215,7 +31362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -482.45996, y: -328.66}
+  m_AnchoredPosition: {x: -482.45996, y: -328.66003}
   m_SizeDelta: {x: -1343.8, y: -657.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150689124
@@ -34100,7 +34247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -568, y: -306.99997}
+  m_AnchoredPosition: {x: -568, y: -307}
   m_SizeDelta: {x: -1343.8, y: -657.32}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &1259052939
@@ -37881,7 +38028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -482.45996, y: -233.33005}
+  m_AnchoredPosition: {x: -482.45996, y: -233.33008}
   m_SizeDelta: {x: -1343.8, y: -657.32}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &1408640324
@@ -38475,7 +38622,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425404890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -44824,7 +44971,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "effect{\n\nName: \"Draw\" ,\nAction: (targets, context) => { \n \n  topCard
+    = context.Deck.Pop();\n  context.Hand.Add(topCard);\n  context.Hand.Shuffle();\n 
+    }\n\n\n}\n\n\neffect{ \nName: \"Damage\" ,\nParams: { Amount: Number} ,\n\nAction:
+    (targets , context) => { for target in targets { \n           i=0;\n          
+    while ( i + 1 < Amount )\n            target.Power -= 1  ;\n\n};\n        \n}\n}\n\n\ncard{\n\nType:
+    \"Oro\" ,\nName: \"Beluga\",\nFaction: \"NorthDream\",\nPower: 10,\nRange: [ 
+    \" Melanger \", \"Ranged\" ],\n\nOnActivation: [\n{\n   Effect: { Name:\"Damage\",\n          
+    Amount: 5 ,\n          },\n          \n   Selector:{\n    Source: \"Board\" ,\n   
+    Single: false ,\n    Predicate: (unit) => unit.Faction == \"Realms\"\n    \n  
+    }, \n  \n   \n\n  \n}\n\n\n]\n\n}\n\n\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -45719,7 +45875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -568, y: -208.83994}
+  m_AnchoredPosition: {x: -568, y: -208.83997}
   m_SizeDelta: {x: -1343.8, y: -657.32}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &1717580603
@@ -47024,6 +47180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: []
+  tokens: []
 --- !u!114 &1776262231 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8414671048200548515, guid: 750efd1f0d42796279fcc0c7ab20c955, type: 3}
@@ -52665,8 +52822,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.008758545, y: 2.1873932}
-  m_SizeDelta: {x: 1259.8, y: 617.98}
+  m_AnchoredPosition: {x: -0.008758545, y: -0.00091839}
+  m_SizeDelta: {x: 1259.8, y: 622.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944698351
 MonoBehaviour:
@@ -52695,7 +52852,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -52754,7 +52911,16 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: "effect{\n\nName: \"Draw\" ,\nAction: (targets, context) => { \n \n  topCard
+    = context.Deck.Pop();\n  context.Hand.Add(topCard);\n  context.Hand.Shuffle();\n 
+    }\n\n\n}\n\n\neffect{ \nName: \"Damage\" ,\nParams: { Amount: Number} ,\n\nAction:
+    (targets , context) => { for target in targets { \n           i=0;\n          
+    while ( i + 1 < Amount )\n            target.Power -= 1  ;\n\n};\n        \n}\n}\n\n\ncard{\n\nType:
+    \"Oro\" ,\nName: \"Beluga\",\nFaction: \"NorthDream\",\nPower: 10,\nRange: [ 
+    \" Melanger \", \"Ranged\" ],\n\nOnActivation: [\n{\n   Effect: { Name:\"Damage\",\n          
+    Amount: 5 ,\n          },\n          \n   Selector:{\n    Source: \"Board\" ,\n   
+    Single: false ,\n    Predicate: (unit) => unit.Faction == \"Realms\"\n    \n  
+    }, \n  \n   \n\n  \n}\n\n\n]\n\n}\n\n"
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -53605,7 +53771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1977643805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55958,6 +56124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: []
+  tokens: []
 --- !u!114 &2059680921
 MonoBehaviour:
   m_ObjectHideFlags: 0

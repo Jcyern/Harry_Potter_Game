@@ -7,13 +7,14 @@ public class Carta_Aumento : Carta_Especial
    public int fila ;
    public int bonificacion ;
 
-    public Carta_Aumento (int id , string nombre , string efecto ,string tipo,string faction, bool disponibilidad ):base(id,nombre,efecto,tipo,faction,disponibilidad)
+    public Carta_Aumento (int id , string nombre , string efecto ,string tipo,string faction, bool disponibilidad, bool IsCard ):base(id,nombre,efecto,tipo,faction,disponibilidad, IsCard)
   { this.id = id;
     this.Nombre= nombre;
     this.Efecto= efecto;
     this.Tipo= tipo;
     this.Faction=faction;
     this.disponibilidad= disponibilidad;
+    this.IsCard = IsCard;
     
   }
 }

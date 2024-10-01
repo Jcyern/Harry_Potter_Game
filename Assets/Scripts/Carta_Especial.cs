@@ -10,13 +10,15 @@ public class Carta_Especial : Carta
     //3__despejes
     //4__senuelos  
 
-     public Carta_Especial (int id , string nombre , string efecto ,string tipo,string faction, bool disponibilidad):base( id, nombre,efecto,tipo,faction,disponibilidad)
+     public Carta_Especial (int id , string nombre , string efecto ,string tipo,string faction, bool disponibilidad, bool IsCard):base( id, nombre,efecto,tipo,faction,disponibilidad, IsCard)
   { this.id = id;
     this.Nombre= nombre;
     this.Efecto= efecto;
     this.Tipo= tipo;
     this.Faction=faction;
     this.disponibilidad= disponibilidad;
+    this.IsCard = IsCard;
+     
     
   }
       

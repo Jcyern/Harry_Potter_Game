@@ -199,7 +199,7 @@ private void AddColumnsToCardsTable()
                        
                        
                      
-                        cartas.Add(new Carta (reader.GetInt32(reader.GetOrdinal("id")),reader["name"].ToString(),reader["effect"].ToString(),reader["tipo"].ToString(),reader["faction"].ToString(),true) );
+                        cartas.Add(new Carta (reader.GetInt32(reader.GetOrdinal("id")),reader["name"].ToString(),reader["effect"].ToString(),reader["tipo"].ToString(),reader["faction"].ToString(),false,false) );
     
 
 

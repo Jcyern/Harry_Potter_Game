@@ -42,7 +42,9 @@ public class EffectNode : AstNode
         {
             Debug.Log(" .....");
             Debug.Log($" Amount: {parametro}");
+            Debug.Log( parametro.Key + parametro.Value);
         }
+        Action.Debugear();
     }
 
     public override object Evaluate(Context context)
@@ -56,20 +58,21 @@ public class CardNode : AstNode
     public string Type { get; set; }
     public string Name { get; set; }
     public string Faction { get; set; }
-    public int Power { get; set; }
-    public List<string> Range { get; set; }
+    public int Power { get; set; } = 0;
+    public int Health{ get;set;} = 0;
+    public List<string> Range { get; set; } = new List<string>();
 
-    public OnAcivationNode Activacion{get;set;}
+    public List<OnAcivationNode> Activacion { get; set; } = new List<OnAcivationNode>();
 
     public override void Debugear()
     {
         Debug.Log(" .....");
-        Debug.Log($" Typo : {Type}, Name: {Name}, Faction: {Faction}, Power:  {Power}, ");
-        foreach (string rannge in Range)
+        Debug.Log($" Typo : {Type} \n, Name: {Name},\n Faction: {Faction},\n Power:  {Power}, ");
+        Debug.Log( $" Range ["+ string.Join(",", Range)+ " ]");
+
+        foreach ( var act in Activacion)
         {
-            Debug.Log(" .....");
-            Debug.Log("Range:");
-            Debug.Log(rannge);
+            act.Debugear();
         }
     }
 
@@ -127,9 +130,9 @@ public class ActionNode : AstNode
     {
         Debug.Log(" .....");
         Debug.Log("Action:");
-        foreach (var chid in Children)
+        foreach (var child in Children)
         {
-            Debug.Log(chid);
+            child.Debugear();
         }
     }
 
@@ -143,7 +146,7 @@ public class SelecterNode : AstNode
 {
     public string Source { get; set; }
     public bool Single { get; set; }
-    public PredicateNode Predicate { get; set; }
+    public PredicateNode Predicate { get; set; } = new PredicateNode();
 
     public override void Debugear()
     {
@@ -171,7 +174,7 @@ public class PredicateNode : AstNode
         Debug.Log(" .....");
         Debug.Log($"Left Member: {LeftMember}");
         Debug.Log($"Operator: {Operator} ");
-        Debug.Log($"RightMemBer:  {RightMember}");
+        Debug.Log($"RightMemBer:  {RightMember.ToString()}");
     }
 
     public override object Evaluate(Context context)
@@ -187,7 +190,7 @@ public class PostActionNode : AstNode
     public string Source { get; set; }
     public bool Single { get; set; }
     public PredicateNode predicate { get; set; }
-    public CardeffectNode Effect {get;set;}
+    public CardeffectNode Effect { get; set; }
 
     public override void Debugear()
     {
@@ -232,7 +235,7 @@ public class VariablReference : ExpressionNode
     public override void Debugear()
     {
         Debug.Log(".........");
-        Debug.Log($" LA variable Referenciada es {name}");
+        Debug.Log($"  var Reference: {name} ");
     }
 
     public override object Evaluate(Context context)
@@ -247,7 +250,6 @@ public class Numero_Int : ExpressionNode
 
     public override void Debugear()
     {
-        Debug.Log(".........");
         Debug.Log($" El valor del Numero es {value}");
     }
 
@@ -263,7 +265,6 @@ public class BooleanoValor : ExpressionNode
 
     public override void Debugear()
     {
-        Debug.Log(".........");
         Debug.Log($"El valor del Bool es {value}");
     }
 
@@ -296,7 +297,6 @@ public class BinaryExpressionNode : ExpressionNode
 
     public override void Debugear()
     {
-        Debug.Log("..........");
         Left.Debugear();
         Debug.Log($"Operator: {Operator}");
         Right.Debugear();
@@ -352,13 +352,14 @@ public class AssignmentNode : ExpressionNode
         Debug.Log("............");
         if (Anidados != null && Anidados.Any())
         {
-            foreach (var item in Anidados)
-            {
-                Debug.Log(item + "+");
-            }
+            Debug.Log(string.Join(".", Anidados) + "Operador" + Operator);
+            ValueExp.Debugear();
         }
-        Debug.Log($" VariableName: {VariableName}   Operator : {Operator}   ");
-        ValueExp.Debugear();
+        else
+        {
+            Debug.Log("var " + VariableName +" "+ Operator);
+            ValueExp.Debugear();
+        }
     }
 
     public override object Evaluate(Context context)
@@ -389,10 +390,15 @@ public class AccesoMetOrProp : AstNode // acceso a  propiedades o metodos
 
         if (Secuence != null && Secuence.Count > 0)
         {
-            Debug.Log("Secuencias ...");
-            foreach (var secuencia in Secuence)
+            Debug.Log(" es metodo: " + IsMetodo);
+            Debug.Log(" secuence: " + string.Join(".", Secuence));
+        }
+        if (Argumento.Count > 0)
+        {
+            Debug.Log("Argumentos ");
+            foreach (var argu in Argumento)
             {
-                Debug.Log(secuencia);
+                argu.Debugear();
             }
         }
     }
@@ -430,7 +436,7 @@ public class AccesoMetOrProp : AstNode // acceso a  propiedades o metodos
 public class WhileNode : AstNode
 {
     public ExpressionNode Condition { get; set; }
-    public List<AstNode> Body { get; set; }
+    public List<AstNode> Body { get; set; } = new List<AstNode>();
 
     public override void Debugear()
     {
@@ -513,7 +519,7 @@ public class ForNode : AstNode
 
     public override void Debugear()
     {
-        Debug.Log($" For item:{Item} in Collection: {Collection} ");
+        Debug.Log($" For (item:)  {Item} in (Collection): {Collection} ");
         Debug.Log("{");
         foreach (var item in body)
         {
